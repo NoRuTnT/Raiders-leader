@@ -10,5 +10,5 @@ import com.raidersleader.backend.domain.dungeon.entity.Dungeon;
 public interface DungeonRepository extends JpaRepository<Dungeon,Long> {
 	Optional<Dungeon> findByDungeonId(Long dungeonId);
 
-	List<Dungeon> findAllList();
+	List<Dungeon> findAll();
 }
