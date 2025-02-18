@@ -4,6 +4,7 @@ import com.raidersleader.backend.common.model.type.ProgressType;
 import com.raidersleader.backend.domain.dungeon.entity.Dungeon;
 
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,21 +30,27 @@ import lombok.NoArgsConstructor;
 public class Party {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(name = "party_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long partyId;
 
+	@Column(name = "dungeon_name")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Dungeon dungeonName;
 
+	@Column(name = "member_id1")
 	private String memberId1;
 
 	@Nullable
+	@Column(name = "member_id2")
 	private String memberId2;
 
 	@Nullable
+	@Column(name = "member_id3")
 	private String memberId3;
 
 	@Nullable
+	@Column(name = "member_id4")
 	private String memberId4;
 
 	@Enumerated(value = EnumType.STRING)

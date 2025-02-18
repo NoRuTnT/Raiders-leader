@@ -1,5 +1,6 @@
 package com.raidersleader.backend.domain.dungeon.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 public class Dungeon {
 
 	@Id
+	@Column(name = "dungeon_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long dungeonId;
 
