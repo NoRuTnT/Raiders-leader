@@ -21,7 +21,7 @@ public class DungeonQueryServiceImpl implements DungeonQueryService {
 		List<Dungeon> dungeons = dungeonRepository.findAll();
 
 		return dungeons.stream()
-			.map(Dungeon::getName)
+			.map(dungeon -> dungeon.getDungeonName())
 			.toList();
 	}
 }

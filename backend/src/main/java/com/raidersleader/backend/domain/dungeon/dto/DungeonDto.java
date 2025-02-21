@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DungeonDto {
 	private Long dungeonId;
-	private String name;
+	private String dungeonName;
 
 	public DungeonDto(Dungeon dungeon) {
 		this.dungeonId = dungeon.getDungeonId();
-		this.name = dungeon.getName();
+		this.dungeonName = dungeon.getDungeonName();
 	}
 }

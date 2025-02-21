@@ -25,9 +25,10 @@ public class Dungeon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long dungeonId;
 
-	private String name;
+	@Column(name = "dungeon_name")
+	private String dungeonName;
 
-	public void updateDungeon(String name) {
-		this.name = name;
+	public void updateDungeon(String dungeonName) {
+		this.dungeonName = dungeonName;
 	}
 }
