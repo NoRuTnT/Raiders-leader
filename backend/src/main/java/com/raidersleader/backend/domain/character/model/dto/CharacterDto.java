@@ -2,7 +2,7 @@ package com.raidersleader.backend.domain.character.model.dto;
 
 import com.raidersleader.backend.domain.character.model.entity.Character;
 
-import jakarta.persistence.Column;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

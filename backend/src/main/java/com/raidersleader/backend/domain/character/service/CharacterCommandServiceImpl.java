@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.raidersleader.backend.domain.character.common.exception.CharacterNotExistException;
-import com.raidersleader.backend.domain.character.model.dto.CharacterRequestDto;
 import com.raidersleader.backend.domain.character.model.entity.Character;
 import com.raidersleader.backend.domain.character.repository.CharacterRepository;
 

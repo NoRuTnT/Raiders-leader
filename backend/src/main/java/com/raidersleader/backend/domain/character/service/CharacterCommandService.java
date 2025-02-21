@@ -1,6 +1,5 @@
 package com.raidersleader.backend.domain.character.service;
 
-import com.raidersleader.backend.domain.character.model.dto.CharacterRequestDto;
 import com.raidersleader.backend.domain.character.model.entity.Character;
 
 public interface CharacterCommandService {
