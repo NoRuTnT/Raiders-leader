@@ -1,6 +1,5 @@
 package com.raidersleader.backend.domain.dungeon.service;
 
-import java.util.List;
 
 public interface DungeonCommandService {
 	String addDungeon(String dungeonName);
