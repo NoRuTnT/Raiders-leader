@@ -27,12 +27,12 @@ public class CharacterCommandServiceImpl implements CharacterCommandService {
 
 	public Character updateCharacter(String characterId, Character character){
 
-		Character charactertmp = characterRepository.findByCharacterId(characterId)
+		Character targetCharacter = characterRepository.findByCharacterId(characterId)
 			.orElseThrow(()-> new CharacterNotExistException(characterId));
 
-		charactertmp.update(character);
+		targetCharacter.update(character);
 
-		return charactertmp;
+		return targetCharacter;
 	}
 
 
