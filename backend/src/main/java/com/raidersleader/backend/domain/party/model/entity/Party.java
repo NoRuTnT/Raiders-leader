@@ -34,7 +34,7 @@ public class Party {
 	private Long partyId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Dungeon dungeonName;
+	private Dungeon dungeon;
 
 	@Column(name = "member_id1")
 	private String memberId1;
@@ -54,4 +54,14 @@ public class Party {
 	@Enumerated(value = EnumType.STRING)
 	private ProgressType progress;
 
+
+	public void updateParty(Party party) {
+		this.dungeon = party.getDungeon();
+		this.memberId1 = party.getMemberId1();
+		this.memberId2 = party.getMemberId2();
+		this.memberId3 = party.getMemberId3();
+		this.memberId4 = party.getMemberId4();
+		this.progress = party.getProgress();
+
+	}
 }
