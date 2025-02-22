@@ -18,7 +18,7 @@ public class DungeonQueryController {
 
 	@GetMapping("")
 	public ResponseEntity<SuccessResponse> dungeonList(){
-		dungeonQueryService.getAllDungeons();
+		dungeonQueryService.findAllDungeons();
 		return null;
 	}
 

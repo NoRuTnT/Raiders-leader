@@ -17,7 +17,7 @@ public class DungeonQueryServiceImpl implements DungeonQueryService {
 	private final DungeonRepository dungeonRepository;
 
 	@Override
-	public List<String> getAllDungeons() {
+	public List<String> findAllDungeons() {
 		List<Dungeon> dungeons = dungeonRepository.findAll();
 
 		return dungeons.stream()
