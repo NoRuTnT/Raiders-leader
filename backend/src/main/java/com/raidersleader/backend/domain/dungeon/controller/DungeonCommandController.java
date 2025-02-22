@@ -23,16 +23,16 @@ public class DungeonCommandController {
 	private final DungeonCommandService dungeonCommandService;
 
 	@PostMapping
-	public ResponseEntity<?> dungeonAdd(@RequestBody String name, HttpServletRequest httprequest){
+	public ResponseEntity<?> dungeonAdd(@RequestBody String dungeonName, HttpServletRequest httprequest){
 
-		String result = dungeonCommandService.addDungeon(name);
+		String result = dungeonCommandService.addDungeon(dungeonName);
 		return ResponseEntity.ok(new SuccessResponse(HttpStatus.OK,"던전 추가 성공",result));
 	}
 
 	@PutMapping(value = "/{dungeonId}")
-	public ResponseEntity<?> dungeonUpdate(@PathVariable("dungeonId") Long dungeonId, @RequestBody String newName, HttpServletRequest httprequest){
+	public ResponseEntity<?> dungeonUpdate(@PathVariable("dungeonId") Long dungeonId, @RequestBody String newDungeonName, HttpServletRequest httprequest){
 
-		String result = dungeonCommandService.updateDungeon(dungeonId, newName);
+		String result = dungeonCommandService.updateDungeon(dungeonId, newDungeonName);
 		return ResponseEntity.ok(new SuccessResponse(HttpStatus.OK,"던전 수정 완료",result));
 	}
 
