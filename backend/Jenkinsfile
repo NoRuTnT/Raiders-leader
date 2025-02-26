@@ -1,0 +1,87 @@
+pipeline {
+    agent any
+
+    environment {
+        imageName = "norutnt/backend"
+        registryCredential = "norutnt-docker"
+        dockerImage = ''
+
+        releaseServerAccount = 'ubuntu'
+        releaseServerUri = 'partycontrol.duckdns.org'
+        releasePort = '8081'
+
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/NoRuTnT/Raiders-leader.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'echo "Building project..."'
+                dir('backend') {
+                    sh 'chmod +x ./gradlew'
+                    sh './gradlew clean bootJar'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "Running tests..."'
+            }
+        }
+
+        stage('[Backend]Image Build & DockerHub Push') {
+            steps {
+                dir('backend') {
+                    script {
+                        docker.withRegistry('', registryCredential) {
+                            sh "docker build -t $imageName:$BUILD_NUMBER ."
+                            sh "docker build -t $imageName:latest ."
+
+                            sh "docker push $imageName:$BUILD_NUMBER"
+                            sh "docker push $imageName:latest"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('DockerHub Pull') {
+            steps {
+                sshagent(credentials: ['ubuntu']) {
+                    sh "ssh -o StrictHostKeyChecking=no $releaseServerAccount@$releaseServerUri 'sudo docker pull $imageName:latest'"
+                }
+            }
+        }
+
+        stage('Before Service Stop') {
+            steps {
+                sshagent(credentials: ['ubuntu']) {
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no ubuntu@partycontrol.duckdns.org "
+                    docker stop back || true
+
+                    docker rm -f back || true
+                    "
+                    '''
+                }
+            }
+        }
+
+
+        stage('Service Start') {
+            steps {
+                sshagent(credentials: ['ubuntu']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no $releaseServerAccount@$releaseServerUri "sudo docker run -i -e TZ=Asia/Seoul --env-file=/home/ubuntu/env/security.env --name back --network my-network -p $releasePort:$releasePort -d $imageName:latest"
+                    """
+                }
+            }
+        }
+    }
+}
