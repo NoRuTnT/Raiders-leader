@@ -23,3 +23,7 @@ spring:
         format_sql: true
       show-sql: true
 
+neople:
+  api:
+    key: ${NEOPLE_API_KEY}
+    url: ${NEOPLE_BASE_URL}
