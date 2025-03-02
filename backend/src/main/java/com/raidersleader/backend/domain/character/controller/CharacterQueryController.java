@@ -3,7 +3,6 @@ package com.raidersleader.backend.domain.character.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,12 +26,20 @@ public class CharacterQueryController {
 				.build());
 	}
 
+	@GetMapping("")
+	public ResponseEntity<SuccessResponse> characterList(){
+		return ResponseEntity.ok(SuccessResponse.builder()
+				.status(HttpStatus.OK)
+				.result(characterQueryService.findAllCharacters())
+				.build());
 
-	@GetMapping
+	}
+
+
+	@GetMapping("/detail")
 	public ResponseEntity<SuccessResponse> characterDetail(@RequestParam("characterName") String characterName){
 
-		return ResponseEntity.ok(
-			SuccessResponse.builder()
+		return ResponseEntity.ok(SuccessResponse.builder()
 				.status(HttpStatus.OK)
 				.result(characterQueryService.findCharacterDetailByName(characterName))
 				.build());

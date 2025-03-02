@@ -21,6 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 public class CharacterQueryServiceImpl implements CharacterQueryService {
 	private final CharacterRepository characterRepository;
 
+	public List<CharacterDetailResponseDto> findAllCharacters(){
+		return characterRepository.findAll()
+			.stream()
+			.map(character -> new CharacterDetailResponseDto(character))
+			.collect(Collectors.toList());
+	}
+
 	@Override
 	public List<CharacterDetailResponseDto> findAdventureCharacterList(String adventureName){
 
