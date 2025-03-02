@@ -21,7 +21,7 @@ public class NeopleController {
 	private String BASE_URL;
 
 
-	@GetMapping("/characters")
+	@GetMapping("/character")
 	public ResponseEntity<?> searchCharacters(
 		@RequestParam String characterName) {
 

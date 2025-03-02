@@ -18,13 +18,10 @@ public class DungeonCommandServiceImpl implements DungeonCommandService {
 	private final DungeonRepository dungeonRepository;
 
 	@Override
-	public String addDungeon(String dungeonName) {
-		dungeonRepository.save(
-			Dungeon.builder()
-			.dungeonName(dungeonName)
-			.build());
-		log.info("Dungeon {} added", dungeonName);
-		return dungeonName;
+	public Dungeon addDungeon(Dungeon dungeon) {
+		dungeonRepository.save(dungeon);
+		log.info("Dungeon {} added", dungeon);
+		return dungeon;
 	}
 
 	@Override
@@ -37,12 +34,13 @@ public class DungeonCommandServiceImpl implements DungeonCommandService {
 	}
 
 	@Override
-	public String updateDungeon(Long dungeonId, String newDungeonName){
-		Dungeon dungeon = dungeonRepository.findByDungeonId(dungeonId)
+	public Dungeon updateDungeon(Long dungeonId, Dungeon newDungeon){
+		Dungeon targetDungeon = dungeonRepository.findByDungeonId(dungeonId)
 			.orElseThrow(()-> new DungeonNotExistException(dungeonId));
-		dungeon.updateDungeon(newDungeonName);
+
+		targetDungeon.updateDungeon(newDungeon);
 		log.info("Dungeon {} modified", dungeonId);
-		return newDungeonName;
+		return newDungeon;
 	}
 
 

@@ -12,6 +12,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class PartyResponseDto {
+	private Long partyId;
 	private Dungeon dungeon;
 	private String memberId1;
 	private String memberId2;
@@ -20,6 +21,7 @@ public class PartyResponseDto {
 	private ProgressType progress;
 
 	public PartyResponseDto(Party party) {
+		this.partyId = party.getPartyId();
 		this.dungeon = party.getDungeon();
 		this.memberId1 = party.getMemberId1();
 		this.memberId2 = party.getMemberId2();
