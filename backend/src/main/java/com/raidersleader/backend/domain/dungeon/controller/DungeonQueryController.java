@@ -1,5 +1,6 @@
 package com.raidersleader.backend.domain.dungeon.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,10 @@ public class DungeonQueryController {
 
 	@GetMapping("")
 	public ResponseEntity<SuccessResponse> dungeonList(){
-		dungeonQueryService.findAllDungeons();
-		return null;
+		return ResponseEntity.ok(SuccessResponse.builder()
+				.status(HttpStatus.OK)
+				.result(dungeonQueryService.findAllDungeons())
+				.build());
 	}
 
 

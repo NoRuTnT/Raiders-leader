@@ -28,7 +28,7 @@ public class Dungeon {
 	@Column(name = "dungeon_name")
 	private String dungeonName;
 
-	public void updateDungeon(String dungeonName) {
-		this.dungeonName = dungeonName;
+	public void updateDungeon(Dungeon newDungeon) {
+		this.dungeonName = newDungeon.getDungeonName();
 	}
 }

@@ -1,9 +1,10 @@
 package com.raidersleader.backend.domain.dungeon.service;
 
+import com.raidersleader.backend.domain.dungeon.entity.Dungeon;
 
 public interface DungeonCommandService {
-	String addDungeon(String dungeonName);
+	Dungeon addDungeon(Dungeon dungeon);
 	void removeDungeon(Long dungeonId);
-	String updateDungeon(Long dungeonId, String newDungeonName);
+	Dungeon updateDungeon(Long dungeonId, Dungeon newDungeon);
 
 }
